@@ -1,62 +1,25 @@
-/* Add these at the very top of style.css */
-:root {
-    --bg: #c9c9c9; /* light mode body background */
-    --text-color: #1e293b; /* light mode text color */
-    --header-bg: #ffffff; /* light mode header background */
-    --card-bg: #ffffff; /* light mode card background */
-    --section-bg-light: #f3f4f6; /* light mode gray-100 */
-    --section-bg-white: #ffffff; /* light mode white */
-    --blue-600: #2563eb; /* A strong blue for active states */
-    --blue-700: #1d4ed8;
-    --green-600: #16a34a;
-
-    /* Variables for the theme toggle button */
-    --primary: #3b82f6; /* A strong blue for active states */
-    --primaryT: rgba(59, 130, 246, 0.5); /* Transparent version of primary */
-    --transDur: 0.3s; /* Transition duration for theme toggle */
-}
-
-body.dark-mode {
-    --bg: #1a202c; /* dark mode body background (e.g., slate-900) */
-    --text-color: #e2e8f0; /* dark mode text color (e.g., slate-200) */
-    --header-bg: #2d3748; /* dark mode header background */
-    --card-bg: #4a5568; /* dark mode card background */
-    --section-bg-light: #2d3748; /* dark mode section background (e.g., gray-800) */
-    --section-bg-white: #2d3748; /* dark mode white sections */
-    --blue-600: #3b82f6; /* Adjust blue for dark mode */
-    --blue-700: #2563eb;
-    --green-600: #10b981; /* Adjust green for dark mode */
-
-    /* Variables for the theme toggle button in dark mode */
-    --primary: #6366f1; /* A slightly different blue for dark mode primary */
-    --primaryT: rgba(99, 102, 241, 0.5); /* Transparent version */
-}
-
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg); /* Use CSS variable */
-    color: var(--text-color); /* Use CSS variable */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    background-color: #c9c9c9; /* Tailwind's slate-50 */
+    color: #1e293b; /* Tailwind's slate-800 */
 }
 /* Custom styles for better aesthetics */
 .product-card {
-    background-color: var(--card-bg); /* Use variable */
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Tailwind's shadow-xl */
-    transition: background-color 0.3s ease;
 }
 .btn-primary {
     background-color: #3b82f6; /* Tailwind's blue-500 */
     transition: background-color 0.2s ease-in-out;
 }
 .btn-primary:hover {
-    background-color: var(--blue-600); /* Tailwind's blue-600 */
+    background-color: #2563eb; /* Tailwind's blue-600 */
 }
 .btn-success {
     background-color: #22c55e; /* Tailwind's green-500 */
     transition: background-color 0.2s ease-in-out;
 }
 .btn-success:hover {
-    background-color: var(--green-600); /* Tailwind's green-600 */
+    background-color: #16a34a; /* Tailwind's green-600 */
 }
 .quantity-btn {
     background-color: #e2e8f0; /* Tailwind's slate-200 */
@@ -86,7 +49,7 @@ body {
     z-index: 1000;
 }
 .modal-content {
-    background-color: var(--card-bg);
+    background-color: white;
     padding: 2rem;
     border-radius: 0.75rem; /* rounded-xl */
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
@@ -95,10 +58,6 @@ body {
     max-height: 90vh;
     overflow-y: auto;
     position: relative;
-    transition: background-color 0.3s ease;
-}
-.modal-content h3 {
-    color: var(--text-color);
 }
 .close-btn {
     position: absolute;
@@ -115,22 +74,21 @@ body {
     border: 1px solid #ccc;
     padding: 1.5rem;
     border-radius: 0.5rem;
-    background-color: var(--section-bg-light);
+    background-color: #f9f9f9;
     font-family: monospace;
     font-size: 0.9rem;
-    transition: background-color 0.3s ease;
 }
 .boleto-line {
     font-weight: bold;
     font-size: 1.1rem;
-    color: var(--text-color);
+    color: #333;
     margin-bottom: 0.5rem;
     word-break: break-all; /* Ensures long numbers wrap */
 }
 .boleto-info {
     margin-top: 1rem;
     font-size: 0.85rem;
-    color: var(--text-color);
+    color: #555;
 }
 
 /* Animation styles for the confirm order button */
@@ -262,14 +220,14 @@ body {
     align-items: center;
     padding: 0.75rem 1rem;
     border-radius: 0.5rem;
-    background-color: var(--section-bg-light);
-    color: var(--text-color);
+    background-color: #e2e8f0; /* slate-200 */
+    color: #475569; /* slate-600 */
     font-weight: 500; /* medium */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 .tracking-stage.active {
-    background-color: var(--primaryT); /* blue-100 equivalent in dark mode */
-    color: var(--text-color);
+    background-color: #dbeafe; /* blue-100 */
+    color: #1e40af; /* blue-800 */
     font-weight: 600; /* semibold */
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
@@ -305,7 +263,7 @@ body {
 
 .help-float:hover {
     transform: scale(1.1);
-    background-color: var(--blue-600); /* Um azul um pouco mais escuro ao passar o mouse */
+    background-color: #2563eb; /* Um azul um pouco mais escuro ao passar o mouse */
 }
 
 /* Se você usar uma imagem para o ícone */
@@ -333,8 +291,6 @@ body {
 }
 
 
-/* Commenting out the original uv-background-animated as theme toggle handles background */
-/*
 @keyframes uv-gradient-animation {
     0% {
         background-position: 0% 50%;
@@ -346,9 +302,12 @@ body {
         background-position: 0% 50%;
     }
 }
+
+/*
 .uv-background-animated {
     background: linear-gradient(270deg, #864fad, #a88cc2, #bab3c5, #ffffff); 
     background-size: 400% 400%;
     animation: uv-gradient-animation 15s ease infinite;
 }
 */
+
