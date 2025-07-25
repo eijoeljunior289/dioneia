@@ -11,7 +11,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 
-<body class="flex flex-col min-h-screen uv-background-animated">
+<body>
     <header class="bg-white shadow-md py-4">
     <div class="container mx-auto px-4 flex justify-between items-center">
         <h1 class="text-3xl font-bold text-blue-600">Loja Online</h1>
@@ -32,6 +32,26 @@
                         <img src="carrinho.png" alt="Carrinho" class="h-6 w-6 mr-1">
                         <span id="cart-item-count" class="ml-2 px-2 py-1 rounded-full text-white font-semibold flex items-center justify-center cart-count">0</span>
                     </a>
+                </li>
+                <!-- Theme Toggle Button -->
+                <li>
+                    <label for="theme" class="theme">
+                        <span class="theme__toggle-wrap">
+                            <input id="theme" class="theme__toggle" type="checkbox" role="switch" name="theme" value="dark">
+                            <span class="theme__fill"></span>
+                            <span class="theme__icon">
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                                <span class="theme__icon-part"></span>
+                            </span>
+                        </span>
+                    </label>
                 </li>
             </ul>
         </nav>
