@@ -12,20 +12,30 @@
 </head>
 <body class="flex flex-col min-h-screen uv-background-animated">
     <header class="bg-white shadow-md py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <h1 class="text-3xl font-bold text-blue-600">Loja Online</h1>
-            <nav>
-                <ul class="flex space-x-6">
-                    <li><a id="home-link" href="#" class="text-lg text-gray-700 hover:text-blue-600 transition duration-200">Início</a></li>
-                    <li><a id="track-order-header-link" href="#" class="text-lg text-gray-700 hover:text-blue-600 transition duration-200">Meus Pedidos</a></li>
-                    <li>
-                        <a id="cart-link" href="#" class="text-lg text-gray-700 hover:text-blue-600 transition duration-200 flex items-center">Carrinho<span id="cart-item-count" class="ml-2 px-2 py-1 rounded-full text-white font-semibold flex items-center justify-center cart-count">0</span>
+    <div class="container mx-auto px-4 flex justify-between items-center">
+        <h1 class="text-3xl font-bold text-blue-600">Loja Online</h1>
+        <nav>
+            <ul class="flex space-x-6">
+                <li>
+                    <a id="home-link" href="#" class="text-lg text-gray-700 hover:text-blue-600 transition duration-200 flex items-center">
+                        <img src="home.png" alt="Início" class="h-6 w-6 mr-1">
                         </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+                </li>
+                <li>
+                    <a id="track-order-header-link" href="#" class="text-lg text-gray-700 hover:text-blue-600 transition duration-200 flex items-center">
+                        <img src="box.png" alt="Meus Pedidos" class="h-6 w-6 mr-1">
+                        </a>
+                </li>
+                <li>
+                    <a id="cart-link" href="#" class="text-lg text-gray-700 hover:text-blue-600 transition duration-200 flex items-center">
+                        <img src="carrinho.png" alt="Carrinho" class="h-6 w-6 mr-1">
+                        <span id="cart-item-count" class="ml-2 px-2 py-1 rounded-full text-white font-semibold flex items-center justify-center cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
     <main id="product-page" class="flex-grow">
 
