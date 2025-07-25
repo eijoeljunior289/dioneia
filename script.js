@@ -35,11 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const trackingStatusList = document.getElementById('tracking-status-list');
     const backFromTrackingBtn = document.getElementById('back-from-tracking-btn');
 
-    // Theme toggle elements
-    const themeToggle = document.getElementById('theme');
-    const body = document.body;
-
-
     let cart = [];
     let currentCheckoutItems = [];
     let animationState = 'button'; 
@@ -50,33 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         { id: 'delivered', text: 'Em direção ao destinatário', icon: '🏠' }
     ];
 
-    // Function to set theme (dark/light)
-    function setTheme(isDarkMode) {
-        if (isDarkMode) {
-            body.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark');
-            themeToggle.checked = true;
-        } else {
-            body.classList.remove('dark-mode');
-            localStorage.setItem('theme', 'light');
-            themeToggle.checked = false;
-        }
-    }
-
-    // Initialize theme based on local storage or system preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        setTheme(savedTheme === 'dark');
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        setTheme(true); // Default to dark if system preference is dark
-    } else {
-        setTheme(false); // Default to light
-    }
-
-    // Event listener for theme toggle
-    themeToggle.addEventListener('change', (event) => {
-        setTheme(event.target.checked);
-    });
    
     function updateCartCountDisplay() {
         let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -189,37 +157,36 @@ document.addEventListener('DOMContentLoaded', () => {
         displayPaymentDetails('pix');
         document.querySelector('input[name="payment-method"][value="pix"]').checked = true;
 
-        // Reset animation state for confirm order button and hide track button
+       
         confirmOrderBtn.classList.remove('box-state', 'truck-state', 'truck-driving');
         confirmOrderBtn.classList.add('button-state');
         confirmOrderBtn.innerHTML = '<span class="button-text-animation">Finalizar Compra</span><span class="icon-animation box-icon-animation">📦</span><span class="icon-animation truck-icon-animation">🚚</span>';
         animationState = 'button';
         confirmOrderBtn.style.transform = '';
         confirmOrderBtn.style.animation = '';
-        confirmOrderBtn.style.display = 'flex'; // Ensure it's visible
-        trackOrderBtn.classList.add('hidden'); // Hide track button
+        confirmOrderBtn.style.display = 'flex'; 
+        trackOrderBtn.classList.add('hidden'); 
     }
 
-    // Navigate back to product page (from checkout or tracking)
+    
     function goToProductPage() {
         checkoutPage.classList.add('hidden');
-        trackingPage.classList.add('hidden'); // Ensure tracking page is hidden
+        trackingPage.classList.add('hidden'); 
         productPage.classList.remove('hidden');
         checkoutForm.reset();
         paymentMethodsSection.classList.add('hidden');
         currentCheckoutItems = [];
-        // Reset buttons on checkout page when returning to product page
+        
         confirmOrderBtn.classList.remove('box-state', 'truck-state', 'truck-driving');
         confirmOrderBtn.classList.add('button-state');
         confirmOrderBtn.innerHTML = '<span class="button-text-animation">Finalizar Compra</span><span class="icon-animation box-icon-animation">📦</span><span class="icon-animation truck-icon-animation">🚚</span>';
         animationState = 'button';
         confirmOrderBtn.style.transform = '';
         confirmOrderBtn.style.animation = '';
-        confirmOrderBtn.style.display = 'flex'; // Ensure it's visible
-        trackOrderBtn.classList.add('hidden'); // Hide track button
+        confirmOrderBtn.style.display = 'flex';
     }
 
-    // Function to display specific payment details section
+    
     function displayPaymentDetails(method) {
         pixDetails.classList.add('hidden');
         creditCardDetails.classList.add('hidden');
@@ -234,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Function to render tracking status
+    
     function renderTrackingStatus(currentStatusId) {
         trackingStatusList.innerHTML = '';
         trackingStages.forEach(stage => {
@@ -243,7 +210,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (stage.id === currentStatusId) {
                 stageElement.classList.add('active');
             }
-            // For demonstration, all previous stages are "completed"
+            
             const currentIndex = trackingStages.findIndex(s => s.id === currentStatusId);
             const stageIndex = trackingStages.findIndex(s => s.id === stage.id);
             if (stageIndex < currentIndex) {
@@ -255,23 +222,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Navigate to tracking page
+    
     function goToTrackingPage() {
         checkoutPage.classList.add('hidden');
         productPage.classList.add('hidden');
         trackingPage.classList.remove('hidden');
-        renderTrackingStatus('prepared'); // Initial status: Produto sendo preparado
+        renderTrackingStatus('prepared'); 
     }
 
 
-    // Event listener for payment method radio buttons
     paymentMethodRadios.forEach(radio => {
         radio.addEventListener('change', (event) => {
             displayPaymentDetails(event.target.value);
         });
     });
 
-    // Handle quantity changes
+
     decreaseBtn.addEventListener('click', () => {
         let currentValue = parseInt(quantityInput.value);
         if (currentValue > 1) {
@@ -284,11 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
         quantityInput.value = currentValue + 1;
     });
 
-    // Handle "Add to Cart" button click
+    
     addToCartBtn.addEventListener('click', () => {
         const productName = "Ventilador Turbo Max Pro";
         const quantity = parseInt(quantityInput.value);
-        const price = 229.90; // Updated price from HTML
+        const price = 229.90; 
 
         const existingItemIndex = cart.findIndex(item => item.name === productName);
         if (existingItemIndex > -1) {
@@ -301,11 +267,10 @@ document.addEventListener('DOMContentLoaded', () => {
         showMessage(messageBox, `${quantity}x ${productName} adicionado(s) ao carrinho!`, 'success');
     });
 
-    // Handle "Buy Now" button click
     buyNowBtn.addEventListener('click', () => {
         const productName = "Ventilador Turbo Max Pro";
         const quantity = parseInt(quantityInput.value);
-        const price = 229.90; // Updated price from HTML
+        const price = 229.90; 
         const directPurchaseItem = [{ name: productName, price: price, quantity: quantity }];
 
         showMessage(messageBox, `Redirecionando para o checkout de ${quantity}x ${productName}!`, 'info');
@@ -314,42 +279,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     });
 
-    // Handle "Carrinho" link click to open modal
     cartLink.addEventListener('click', (e) => {
         e.preventDefault();
         renderCartItems();
         cartModal.classList.remove('hidden');
     });
 
-    // Handle close modal button click
     closeCartModalBtn.addEventListener('click', () => {
         cartModal.classList.add('hidden');
     });
 
-    // Close modal if clicking outside the content
+   
     cartModal.addEventListener('click', (e) => {
         if (e.target === cartModal) {
             cartModal.classList.add('hidden');
         }
     });
 
-    // Handle "Finalizar Compra" button click in cart modal
     proceedToCheckoutBtn.addEventListener('click', () => {
         if (cart.length > 0) {
             goToCheckout(cart);
-            cart = []; // Clear cart after proceeding to checkout
+            cart = []; 
             updateCartCountDisplay();
         } else {
             showMessage(messageBox, 'Seu carrinho está vazio!', 'error');
         }
     });
 
-    // Handle "Voltar" button click on checkout page
+    
     backToProductBtn.addEventListener('click', () => {
         goToProductPage();
     });
 
-    // Handle "Continuar para Pagamento" button click
+    
     continueToPaymentBtn.addEventListener('click', () => {
         const formFields = checkoutForm.querySelectorAll('input[required]');
         let allFieldsFilled = true;
@@ -368,7 +330,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Handle "Finalizar Compra" button click in payment methods section (now with animation)
     confirmOrderBtn.addEventListener('click', () => {
         const selectedPaymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
 
@@ -384,7 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Start the animation
+        
         if (animationState === 'button') {
             confirmOrderBtn.classList.remove('button-state');
             confirmOrderBtn.classList.add('box-state');
@@ -411,12 +372,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         if (event.animationName === 'driveTruck') {
                             confirmOrderBtn.removeEventListener('animationend', handler);
 
-                            // Hide the confirm order button completely
+                            
                             confirmOrderBtn.style.display = 'none';
-                            // Show the track order button
+                           
                             trackOrderBtn.classList.remove('hidden');
 
-                            // Perform final order confirmation logic
+                            
                             const fullName = document.getElementById('full-name').value;
                             const email = document.getElementById('email').value;
                             const address = document.getElementById('address').value;
@@ -433,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                             showMessage(checkoutMessageBox, `Pedido realizado com sucesso!`, 'success');
 
-                            // No immediate redirect to product page. User can now click "Acompanhar Pedido"
+                           
                         }
                     }, { once: true });
                 }, 1000);
@@ -441,28 +402,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Handle "Acompanhar Pedido" button click
     trackOrderBtn.addEventListener('click', () => {
         goToTrackingPage();
     });
 
-    // Handle "Voltar para a Página Inicial" button on tracking page
+    
     backFromTrackingBtn.addEventListener('click', () => {
         goToProductPage();
     });
 
-    // Add event listener for the "Início" link
+    
     homeLink.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default link behavior
-        goToProductPage(); // Call the function to navigate to the product page
+        e.preventDefault(); 
+        goToProductPage(); 
     });
 
-    // Add event listener for the new "Acompanhar Pedido" link in the header
     trackOrderHeaderLink.addEventListener('click', (e) => {
-        e.preventDefault(); // Prevent default link behavior
-        goToTrackingPage(); // Call the function to navigate to the tracking page
+        e.preventDefault(); 
+        goToTrackingPage(); 
     });
 
-    // Initial cart display update
+    
     updateCartCountDisplay();
 });
