@@ -1,313 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #c9c9c9; /* Tailwind's slate-50 */
-    color: #1e293b; /* Tailwind's slate-800 */
 }
-/* Custom styles for better aesthetics */
-.product-card {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Tailwind's shadow-xl */
-}
-.btn-primary {
-    background-color: #3b82f6; /* Tailwind's blue-500 */
-    transition: background-color 0.2s ease-in-out;
-}
-.btn-primary:hover {
-    background-color: #2563eb; /* Tailwind's blue-600 */
-}
-.btn-success {
-    background-color: #22c55e; /* Tailwind's green-500 */
-    transition: background-color 0.2s ease-in-out;
-}
-.btn-success:hover {
-    background-color: #16a34a; /* Tailwind's green-600 */
-}
-.quantity-btn {
-    background-color: #e2e8f0; /* Tailwind's slate-200 */
-    transition: background-color 0.2s ease-in-out;
-}
-.quantity-btn:hover {
-    background-color: #cbd5e1; /* Tailwind's slate-300 */
-}
-.cart-count {
-    background-color: #ef4444; /* Tailwind's red-500 */
-    min-width: 20px;
-    height: 20px;
-    font-size: 0.75rem; /* text-xs */
-    line-height: 1rem; /* leading-none */
-}
-/* Modal styles */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-.modal-content {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 0.75rem; /* rounded-xl */
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-2xl */
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
+
+/* --- Tracking Timeline Styles --- */
+.tracking-item {
     position: relative;
+    padding-bottom: 2rem;
 }
-.close-btn {
+
+.tracking-item::before {
+    content: '';
     position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #4b5563; /* Tailwind's gray-600 */
-}
-/* Boleto specific styles */
-.boleto-representation {
-    border: 1px solid #ccc;
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    background-color: #f9f9f9;
-    font-family: monospace;
-    font-size: 0.9rem;
-}
-.boleto-line {
-    font-weight: bold;
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-    word-break: break-all; /* Ensures long numbers wrap */
-}
-.boleto-info {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: #555;
-}
-
-/* Animation styles for the confirm order button */
-#confirm-order-btn {
-    position: relative;
-    overflow: hidden; /* Hide overflowing content during transformation */
-    transition: all 0.6s ease-in-out, transform 0.6s ease-in-out;
-    display: flex; /* Ensure flex for centering content */
-    justify-content: center;
-    align-items: center;
-}
-
-/* Initial state: Button */
-#confirm-order-btn.button-state {
-    z-index: 3;
-    opacity: 1;
-    transform: rotateY(0deg);
-    background-color: #22c55e; /* Green button */
-    width: 100%; /* Full width as per original design */
-    height: auto; /* Auto height as per original design */
-    padding: 1rem 2rem; /* Original padding */
-}
-
-/* Box state */
-#confirm-order-btn.box-state {
-    background-color: #facc15; /* Yellow box */
-    width: 80px; /* Smaller for box */
-    height: 80px; /* Taller for box */
-    border-radius: 12px;
-    transform: scale(1.5) rotateY(0deg); /* Scale up to be a box */
-    opacity: 1;
-    z-index: 2;
-    margin: 0 auto; /* Center the box */
-}
-
-/* Truck state */
-#confirm-order-btn.truck-state {
-    background-color: #ef4444; /* Red truck */
-    width: 150px; /* Wider for truck */
-    height: 80px; /* Same height as box for simplicity */
-    border-radius: 12px;
-    transform: scale(1.8) translateX(0) rotateY(0deg); /* Scale and translate for truck */
-    opacity: 1;
-    z-index: 1;
-    position: relative; /* For truck details */
-    display: block; /* Allow internal elements to flow */
-    padding: 10px;
-    box-sizing: border-box;
-    margin: 0 auto; /* Center the truck */
-}
-
-/* Text visibility during transitions */
-#confirm-order-btn.button-state .button-text-animation { opacity: 1; }
-#confirm-order-btn.box-state .button-text-animation { opacity: 0; }
-#confirm-order-btn.truck-state .button-text-animation { opacity: 0; }
-
-
-/* Truck specific elements (simplified) */
-.truck-body {
-    width: 100%;
-    height: 100%;
-    background-color: #ef4444; /* Red */
-    border-radius: 8px;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 1.5rem;
-}
-
-.truck-wheels {
-    position: absolute;
-    bottom: -15px; /* Position below the truck body */
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-}
-
-.wheel {
-    width: 20px;
-    height: 20px;
-    background-color: #333;
+    left: -2.3rem;
+    top: 0.4rem;
+    width: 1rem;
+    height: 1rem;
     border-radius: 50%;
-    border: 2px solid #555;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    background-color: #e2e8f0; /* Gray-200 */
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #cbd5e1;
+    z-index: 10;
+    transition: all 0.3s ease;
 }
 
-/* Keyframe animation for truck movement */
-@keyframes driveTruck {
-    0% { transform: translateX(0); opacity: 1; }
-    99% { opacity: 1; } /* Keep visible until almost off-screen */
-    100% { transform: translateX(calc(100vw + 200px)); opacity: 0; } /* Drive off screen and disappear */
-}
-
-#confirm-order-btn.truck-driving {
-    animation: driveTruck 3s forwards ease-out; /* Apply animation */
-}
-
-/* Hide content during transition to avoid visual glitches */
-#confirm-order-btn:not(.button-state) .button-text-animation {
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-#confirm-order-btn:not(.box-state) .box-icon-animation {
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-#confirm-order-btn:not(.truck-state) .truck-icon-animation {
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-/* Icons for visual representation */
-.icon-animation {
-    font-size: 2rem;
-    color: white;
+/* Linha vertical conectando os pontos */
+.tracking-item:not(:last-child)::after {
+    content: '';
     position: absolute;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    left: -1.85rem;
+    top: 1.4rem;
+    bottom: -0.4rem;
+    width: 2px;
+    background-color: #e2e8f0;
+    z-index: 0;
 }
-#confirm-order-btn.box-state .box-icon-animation { opacity: 1; }
-#confirm-order-btn.truck-state .truck-icon-animation { opacity: 1; }
 
-/* Tracking status styles */
-.tracking-stage {
+.tracking-item.completed::before {
+    background-color: #22c55e; /* Green-500 */
+    box-shadow: 0 0 0 2px #22c55e;
+}
+.tracking-item.completed:not(:last-child)::after {
+    background-color: #22c55e;
+}
+
+.tracking-item.active::before {
+    background-color: #3b82f6; /* Blue-500 */
+    box-shadow: 0 0 0 4px #dbeafe; /* Blue-100 ring */
+    animation: pulse-blue 2s infinite;
+}
+
+@keyframes pulse-blue {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* --- Spinner Animation --- */
+.fa-spin-fast {
+    animation: fa-spin 0.8s infinite linear;
+}
+
+/* --- Utility Animations --- */
+.btn-loading {
+    opacity: 0.8;
+    cursor: wait !important;
+    pointer-events: none;
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.3s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* --- Chatbot Styles --- */
+.chat-open {
+    display: flex !important;
+    animation: scaleIn 0.3s ease-out forwards;
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Typing Indicator */
+.typing-indicator {
     display: flex;
-    align-items: center;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    background-color: #e2e8f0; /* slate-200 */
-    color: #475569; /* slate-600 */
-    font-weight: 500; /* medium */
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-.tracking-stage.active {
-    background-color: #dbeafe; /* blue-100 */
-    color: #1e40af; /* blue-800 */
-    font-weight: 600; /* semibold */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-.tracking-stage.completed {
-    background-color: #d1fae5; /* green-100 */
-    color: #065f46; /* green-800 */
-}
-.tracking-stage .icon {
-    margin-right: 0.75rem;
-    font-size: 1.25rem;
+    gap: 4px;
+    padding: 6px 10px;
+    background-color: #f1f5f9;
+    border-radius: 12px;
+    width: fit-content;
 }
 
-/* Botão Flutuante de Ajuda */
-.help-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #3b82f6; /* Cor azul similar ao botão da imagem (Tailwind blue-500) */
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px; /* Tamanho do ícone/emoji */
-    line-height: 60px; /* Alinha verticalmente o conteúdo (para ícones de texto/emoji) */
-    box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
-    z-index: 1000; /* Garante que fique acima de outros elementos */
-    display: flex; /* Para centralizar o conteúdo */
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #94a3b8;
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out both;
 }
 
-.help-float:hover {
-    transform: scale(1.1);
-    background-color: #2563eb; /* Um azul um pouco mais escuro ao passar o mouse */
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typingBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1); }
 }
 
-/* Se você usar uma imagem para o ícone */
-.help-float img {
-    width: 35px; /* Ajuste o tamanho da imagem do ícone conforme necessário */
-    height: 35px;
-    /* Adicione 'filter: brightness(0) invert(1);' se seu ícone for preto e você quiser que ele fique branco */
+::-webkit-scrollbar {
+    width: 6px;
 }
-
-/* Ajustes para telas menores */
-@media (max-width: 768px) {
-    .help-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-        font-size: 25px;
-        line-height: 50px;
-    }
-
-    .help-float img {
-        width: 30px;
-        height: 30px;
-    }
-}
-
-
-@keyframes uv-gradient-animation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/*
-.uv-background-animated {
-    background: linear-gradient(270deg, #864fad, #a88cc2, #bab3c5, #ffffff); 
-    background-size: 400% 400%;
-    animation: uv-gradient-animation 15s ease infinite;
-}
-*/
-
+::-webkit-scrollbar-thumb {
+    background-color: #cbd5e1;
+    border-radius: 4px;
+}   
